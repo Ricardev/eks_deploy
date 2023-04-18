@@ -2,16 +2,16 @@
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
+EXPOSE 5042
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["Services/DeployEksDemo/", "DeployEksDemo/"]
+WORKDIR /src 
+COPY . Services/DeployEksDemo/
 RUN dotnet restore "Services/DeployEksDemo/DeployEksDemo.csproj"
-COPY . .
-WORKDIR "/src/DeployEksDemo"
-RUN dotnet build "DeployEksDemo.csproj" -c Release -o /app/build
+
 
 FROM build AS publish
+WORKDIR "/src/Services/DeployEksDemo"
 RUN dotnet publish "DeployEksDemo.csproj" -c Release -o /app/publish
 
 FROM base AS final
