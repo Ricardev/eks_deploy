@@ -37,7 +37,7 @@ jobs:
       with:
         name: artifacts
     - name: Test
-      run: dotnet test Release/Test.DeployEksDemo.dll --no-build --verbosity normal
+      run: dotnet test Test.DeployEksDemo.dll --no-build --verbosity normal
   
   deploy:
     needs: [build, test]
