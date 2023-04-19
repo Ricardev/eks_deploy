@@ -1,0 +1,11 @@
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\DeployEksDemo.exe
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\appsettings.Development.json
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\appsettings.json
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\DeployEksDemo.dll
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\DeployEksDemo.deps.json
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\DeployEksDemo.runtimeconfig.json
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\DeployEksDemo.pdb
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\Microsoft.OpenApi.dll
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\ricar\Documents\eks_deploy\Services\DeployEksDemo\bin\Debug\publish\Swashbuckle.AspNetCore.SwaggerUI.dll

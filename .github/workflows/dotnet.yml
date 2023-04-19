@@ -20,11 +20,13 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: Publish
+      run: dotnet publish --no-restore --no-build -o ./Release
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
         name: artifacts
-        path: /**/bin/**
+        path: Release
 
   test:
     runs-on: ubuntu-latest
@@ -35,7 +37,7 @@ jobs:
       with:
         name: artifacts
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test Release/Test.DeployEksDemo.dll --no-build --verbosity normal
   
   deploy:
     needs: [build, test]

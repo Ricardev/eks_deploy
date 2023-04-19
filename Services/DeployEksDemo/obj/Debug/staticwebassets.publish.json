@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "CtLxjxrLXGGd2cvDfujbzYogPUwTyAPzVTM5V8jIUag=",
+  "Source": "DeployEksDemo",
+  "BasePath": "_content/DeployEksDemo",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
