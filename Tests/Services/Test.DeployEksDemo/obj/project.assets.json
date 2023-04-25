@@ -5982,11 +5982,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ricar\\Documents\\eks_deploy\\Tests\\Services\\Test.DeployEksDemo\\Test.DeployEksDemo.csproj",
+      "projectUniqueName": "C:\\Users\\ricar\\Documents\\eks\\eks_deploy\\Tests\\Services\\Test.DeployEksDemo\\Test.DeployEksDemo.csproj",
       "projectName": "Test.DeployEksDemo",
-      "projectPath": "C:\\Users\\ricar\\Documents\\eks_deploy\\Tests\\Services\\Test.DeployEksDemo\\Test.DeployEksDemo.csproj",
+      "projectPath": "C:\\Users\\ricar\\Documents\\eks\\eks_deploy\\Tests\\Services\\Test.DeployEksDemo\\Test.DeployEksDemo.csproj",
       "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ricar\\Documents\\eks_deploy\\Tests\\Services\\Test.DeployEksDemo\\obj\\",
+      "outputPath": "C:\\Users\\ricar\\Documents\\eks\\eks_deploy\\Tests\\Services\\Test.DeployEksDemo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ricar\\AppData\\Roaming\\NuGet\\NuGet.Config"

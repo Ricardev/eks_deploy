@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sZwwkzCxxCyTBzE8p7EK/0anJt0Kb9kBTvKegQB0mWtU/yWCjFh6KzNcW7JcJbipEueTk1pEIIo0hfbSlWg/eA==",
+  "dgSpecHash": "c/ECVxBSKmjqbmVlmFeM8dvlUY5t/ZHeMc2AeVTkLwKDMLgVhihES/ENXI65BPD0MeDR/xhLzyuo7ADQkvofiw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ricar\\Documents\\eks_deploy\\Services\\DeployEksDemo\\DeployEksDemo.csproj",
+  "projectFilePath": "C:\\Users\\ricar\\Documents\\eks\\eks_deploy\\Services\\DeployEksDemo\\DeployEksDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ricar\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\ricar\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

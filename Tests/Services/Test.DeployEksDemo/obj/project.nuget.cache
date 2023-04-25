@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2YB2T5jv4RnAqxYc0Gvm4bmoQpVBmzAYFd0x3rbiIrQ6GpGKdh0NDhNVPsEJNETW/VoCizHHpSwtQjtwOo35MQ==",
+  "dgSpecHash": "6IltZM8U+WiRo1S0Ih/hC6k87P4GuYmJnjWBy5fo9fs5iYcBhxc2LymMWAcQctdoZdCA/RmNEek7Zlko97XSKQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ricar\\Documents\\eks_deploy\\Tests\\Services\\Test.DeployEksDemo\\Test.DeployEksDemo.csproj",
+  "projectFilePath": "C:\\Users\\ricar\\Documents\\eks\\eks_deploy\\Tests\\Services\\Test.DeployEksDemo\\Test.DeployEksDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ricar\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\ricar\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

@@ -213,11 +213,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ricar\\Documents\\eks_deploy\\Services\\DeployEksDemo\\DeployEksDemo.csproj",
+      "projectUniqueName": "C:\\Users\\ricar\\Documents\\eks\\eks_deploy\\Services\\DeployEksDemo\\DeployEksDemo.csproj",
       "projectName": "DeployEksDemo",
-      "projectPath": "C:\\Users\\ricar\\Documents\\eks_deploy\\Services\\DeployEksDemo\\DeployEksDemo.csproj",
+      "projectPath": "C:\\Users\\ricar\\Documents\\eks\\eks_deploy\\Services\\DeployEksDemo\\DeployEksDemo.csproj",
       "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ricar\\Documents\\eks_deploy\\Services\\DeployEksDemo\\obj\\",
+      "outputPath": "C:\\Users\\ricar\\Documents\\eks\\eks_deploy\\Services\\DeployEksDemo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ricar\\AppData\\Roaming\\NuGet\\NuGet.Config"
