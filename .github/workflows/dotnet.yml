@@ -11,40 +11,85 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Publish
-      run: dotnet publish --no-restore --no-build -o ./Release
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: artifacts
-        path: Release
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Publish
+        run: dotnet publish --no-restore --no-build -o ./Release
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifacts
+          path: Release
 
   test:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Download Artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: artifacts
-    - name: Test
-      run: dotnet test Test.DeployEksDemo.dll --no-build --verbosity normal
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts
+      - name: Test
+        run: dotnet test Test.DeployEksDemo.dll --no-build --verbosity normal
+  
+  deployInfra:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          tf_actions_working_dir: './Infrastructure/Terraform'
+          cli_config_credentials_token: ${{secrets.TF_API_TOKEN}}
+      - name: Terraform Init
+        run: terraform init
+      - name: Terraform Format
+        run: terraform fmt -check
+      - name: Terraform Plan
+        run: terraform plan -input=false
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/"master"' && github.event_name == 'push'
+        run: terraform apply -auto-approve -input=false
+  
+  updateImageOnEcr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::434198339668:role/GithubActions-Role
+          aws-region: us-east-1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Build, tag, and push docker image to Amazon ECR
+        env:
+          REGISTRY: ${{steps.login-ecr.outputs.registry}}
+          REPOSITORY: 434198339668.dkr.ecr.us-east-1.amazonaws.com/weather-forecast-repository
+          IMAGE_TAG: ${{github.sha}}
+        run: |
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
   
   deploy:
     needs: [build, test]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Download Artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: artifacts
+      - uses: actions/checkout@v3
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts
+
+  
