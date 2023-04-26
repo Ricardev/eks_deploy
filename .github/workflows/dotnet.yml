@@ -40,6 +40,7 @@ jobs:
         run: dotnet test Test.DeployEksDemo.dll --no-build --verbosity normal
   
   deployInfra:
+    needs: [build, test]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -62,6 +63,7 @@ jobs:
         run: terraform apply -auto-approve -input=false
   
   updateImageOnEcr:
+    needs: [build, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -83,7 +85,7 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
   
   deploy:
-    needs: [build, test]
+    needs: [build, test, deployInfra]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
