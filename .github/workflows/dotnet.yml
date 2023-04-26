@@ -40,6 +40,9 @@ jobs:
         run: dotnet test Test.DeployEksDemo.dll --no-build --verbosity normal
   
   deployInfra:
+    env: 
+      TF_VAR_AWS_ACCESS_KEY: ${{secrets.AWS_TERRAFORM_ACCESS_KEY}}
+      TF_VAR_AWS_SECRET: ${{secrets.AWS_TERRAFORM_SECRET_KEY}}
     needs: [build, test]
     runs-on: ubuntu-latest
     defaults:
@@ -50,8 +53,11 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          tf_actions_working_dir: './Infrastructure/Terraform'
-          cli_config_credentials_token: ${{secrets.TF_API_TOKEN}}
+          tf_actions_working_dir: '/Infrastructure/Terraform'
+      - name: Where Am I
+        run: echo pwd
+      - name: What do we have here
+        run: ls
       - name: Terraform Init
         run: terraform init
       - name: Terraform Format
@@ -59,11 +65,19 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -input=false
       - name: Terraform Apply
+        id: apply
+        continue-on-error: true
         if: github.ref == 'refs/heads/"master"' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
+      - name: Destroy
+        if: steps.apply.outcome == 'failure'
+        run: terraform destroy -auto--approve
   
   updateImageOnEcr:
     needs: [build, test]
+    permissions: 
+      id-token: write
+      contents: read  
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -78,7 +92,7 @@ jobs:
       - name: Build, tag, and push docker image to Amazon ECR
         env:
           REGISTRY: ${{steps.login-ecr.outputs.registry}}
-          REPOSITORY: 434198339668.dkr.ecr.us-east-1.amazonaws.com/weather-forecast-repository
+          REPOSITORY: ${{secrets.ECR_REPOSITORY_URI}}
           IMAGE_TAG: ${{github.sha}}
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
