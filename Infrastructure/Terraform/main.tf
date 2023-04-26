@@ -11,9 +11,9 @@ terraform {
 }
 
 provider "aws" {
-  region     = "us-east-1"
-  access_key = "AKIAWKGB44BKKOZ4WJXF"
-  secret_key = "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"
+  region     = var.AWS_REGION
+  access_key = var.AWS_ACCESS_KEY
+  secret_key = var.AWS_SECRET
 }
 
 resource "aws_eks_cluster" "WeatherForecast" {
@@ -34,14 +34,10 @@ resource "aws_eks_fargate_profile" "Eks-Fargate-Profile" {
   pod_execution_role_arn = aws_iam_role.WeatherForecast-Eks-Cluster-Role.arn
   subnet_ids = [aws_subnet.Eks-Subnet-One.id, aws_subnet.Eks-Subnet-Two.id]
   selector {
-    namespace = "Weather"
+    namespace = "WeatherForecast"
   }
 }
 
-
-resource "aws_ecr_repository" "WeatherForecastRepository" {
-  name = "WeatherForecastRepository"
-}
 #------------------IAM Roles------------------#
 
 resource "aws_iam_role" "WeatherForecast-Eks-Cluster-Role" {
