@@ -64,7 +64,7 @@ jobs:
         id: apply
         continue-on-error: true
         if: ${{github.ref == 'refs/heads/"master"'}} && ${{github.event_name == 'push'}}
-        run: terraform apply terraform_plan_file_output -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false terraform_plan_file_output
       - name: Destroy
         if: steps.apply.outcome == 'failure'
         run: terraform destroy -auto--approve
