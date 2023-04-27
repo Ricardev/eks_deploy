@@ -55,15 +55,16 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           tf_actions_working_dir: .
+          terraform_version: 1.4.5
       - name: Terraform Init
         run: terraform init
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan -out=terraform_plan_file_output -input=false
       - name: Terraform Apply
         id: apply
         continue-on-error: true
-        if: (github.ref == 'refs/heads/"master"' || github.ref == 'refs/remotes/origin/"master"') && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        if: ${{github.ref == 'refs/heads/"master"'}} && ${{github.event_name == 'push'}}
+        run: terraform apply terraform_plan_file_output -auto-approve -input=false
       - name: Destroy
         if: steps.apply.outcome == 'failure'
         run: terraform destroy -auto--approve
