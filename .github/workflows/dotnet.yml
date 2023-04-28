@@ -67,7 +67,7 @@ jobs:
         run: terraform apply -auto-approve -input=false terraform_plan_file_output
       - name: Destroy
         if: steps.apply.outcome == 'failure'
-        run: terraform destroy -auto--approve
+        run: terraform destroy -auto-approve
   
   updateImageOnEcr:
     needs: [build, test]

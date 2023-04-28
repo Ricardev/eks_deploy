@@ -1,6 +1,15 @@
 terraform {
   required_version = "1.4.5"
 
+  backend "s3" {
+    bucket = "terraform-eks-deploy-bucket"
+    key = "terraform.tfstate"
+    region = var.AWS_REGION
+    
+    skip_region_validation      = true
+    skip_credentials_validation = true
+    skip_metadata_api_check     = true
+  }
 
   required_providers {
     aws = {
@@ -28,7 +37,7 @@ resource "aws_eks_cluster" "WeatherForecast" {
   ]
 }
 
-resource "aws_eks_fargate_profile" "Eks-Fargate-Profile" {
+resource "aws_eks_fargate_profile" "WeatherForecast-Fargate-Profile" {
   cluster_name           = aws_eks_cluster.WeatherForecast.name
   fargate_profile_name   = "Eks-Fargate-Profile"
   pod_execution_role_arn = aws_iam_role.WeatherForecast-Eks-Cluster-Role.arn
