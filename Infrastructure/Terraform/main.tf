@@ -4,7 +4,7 @@ terraform {
   backend "s3" {
     bucket = "terraform-eks-deploy-bucket"
     key = "terraform.tfstate"
-    region = var.AWS_REGION
+    region = "us-east-1"
     
     skip_region_validation      = true
     skip_credentials_validation = true
